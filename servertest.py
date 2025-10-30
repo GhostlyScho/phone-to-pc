@@ -9,7 +9,7 @@ from openai import OpenAI
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-app = Flask(__name__)
+servertest = Flask(__name__)
 
 #test
 def delete_text_from_file(file_path, target_text):
@@ -54,7 +54,7 @@ def schedule_process_exit(delay_seconds: float = 0.5) -> None:
 
     threading.Timer(delay_seconds, _delayed_exit).start()
 
-@app.route("/ask", methods=["POST"])
+@servertest.route("/ask", methods=["POST"])
 def ask():
     data = request.get_json()
     user_input = data.get("text", "")
@@ -122,7 +122,8 @@ def ask():
     return jsonify({"reply": reply1})
 #10.1.67.185
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5050)
+    servertest.run(host="0.0.0.0", port=5050)
 
 #ngrok http 5050
+
 
