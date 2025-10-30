@@ -62,10 +62,6 @@ def ask():
     # AI response
     lower_input = user_input.lower()
     # graceful shutdown (server-agnostic)
-    if lower_input.strip() in ["end", "quit", "exit"]:
-        reply1 = "Server shutting down."
-        schedule_process_exit(0.5)
-        return jsonify({"reply": reply1})
 
     if "duck mode" in user_input:
         response2 = client.chat.completions.create(
@@ -125,6 +121,7 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5050)
 
 #ngrok http 5050
+
 
 
 
